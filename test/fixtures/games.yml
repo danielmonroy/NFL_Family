@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  home_team: 1
+  away_team: 1
+  scheduled_at: 2019-09-07 13:19:21
+  home_team_score: 1
+  away_team_score: 1
+  week: 1
+  season: 1
+  editable: false
+
+two:
+  home_team: 1
+  away_team: 1
+  scheduled_at: 2019-09-07 13:19:21
+  home_team_score: 1
+  away_team_score: 1
+  week: 1
+  season: 1
+  editable: false

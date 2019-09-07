@@ -2,8 +2,9 @@
 
 .auth {
   &.auth-bg-1 {
-    background: url("../../images/auth/login_1.jpg");
+    background: url("../../images/auth/login_1.png");
     background-size: cover;
+    background-position: center;
   }
   &.register-bg-1 {
     background: url("../../images/auth/register.jpg") center center no-repeat;

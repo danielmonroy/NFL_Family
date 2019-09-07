@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @pool.user %>
+</p>
+
+<p>
+  <strong>Week:</strong>
+  <%= @pool.week %>
+</p>
+
+<p>
+  <strong>Season:</strong>
+  <%= @pool.season %>
+</p>
+
+<p>
+  <strong>Total points:</strong>
+  <%= @pool.total_points %>
+</p>
+
+<%= link_to 'Edit', edit_pool_path(@pool) %> |
+<%= link_to 'Back', pools_path %>

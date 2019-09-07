@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Game:</strong>
+  <%= @forecast.game %>
+</p>
+
+<p>
+  <strong>Pool:</strong>
+  <%= @forecast.pool %>
+</p>
+
+<p>
+  <strong>Selection:</strong>
+  <%= @forecast.selection %>
+</p>
+
+<%= link_to 'Edit', edit_forecast_path(@forecast) %> |
+<%= link_to 'Back', forecasts_path %>

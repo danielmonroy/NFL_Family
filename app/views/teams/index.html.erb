@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h2>Equipos de la NFL</h2>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table">
+              <tbody>
+                <% @teams.each do |team| %>
+                <tr>
+                  <td><img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= team.short_name != "JAC" ? team.short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:35px;" width="35"></td>
+                  <td><%= team.name %></td>
+                  <td><%= team.city %></td>
+                  <td><%= team.short_name %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

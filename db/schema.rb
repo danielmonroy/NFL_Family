@@ -10,7 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_07_171944) do
+ActiveRecord::Schema.define(version: 2019_09_07_182150) do
+
+  create_table "forecasts", force: :cascade do |t|
+    t.integer "game_id"
+    t.integer "pool_id"
+    t.string "selection"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_forecasts_on_game_id"
+    t.index ["pool_id"], name: "index_forecasts_on_pool_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.integer "home_team"
+    t.integer "away_team"
+    t.datetime "scheduled_at"
+    t.integer "home_team_score"
+    t.integer "away_team_score"
+    t.integer "week"
+    t.integer "season"
+    t.boolean "editable"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pools", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "week"
+    t.integer "season"
+    t.integer "total_points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_pools_on_user_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "city"
+    t.string "name"
+    t.string "short_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

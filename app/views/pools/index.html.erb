@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h2>Quinielas</h2>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<p id="notice"><%= notice %></p>
+
+<h1>Pools</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Week</th>
+      <th>Season</th>
+      <th>Total points</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pools.each do |pool| %>
+      <tr>
+        <td><%= pool.user %></td>
+        <td><%= pool.week %></td>
+        <td><%= pool.season %></td>
+        <td><%= pool.total_points %></td>
+        <td><%= link_to 'Show', pool %></td>
+        <td><%= link_to 'Edit', edit_pool_path(pool) %></td>
+        <td><%= link_to 'Destroy', pool, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pool', new_pool_path %>

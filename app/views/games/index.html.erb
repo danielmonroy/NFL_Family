@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h2>Juegos</h2>
+        <br>
+        <table class="table">
+          <thead>
+            <tr class="text-center">
+              <th width="15%">Semana</th>
+              <th width="40%" colspan="2">Visitante</th>
+              <th></th>
+              <th width="40%" colspan="2">Local</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @games.each do |game| %>
+            <tr class="text-center">
+              <td>
+                <%= game.week %>
+              </td>
+              <td>
+                <img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(game.away_team).short_name != "JAC" ? Team.find(game.away_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
+                <br>
+                <%= Team.find(game.away_team).name %>
+              </td>
+              <td>
+                <%= game.away_team_score %>
+              </td>
+              <td>-</td>
+              <td>
+                <%= game.home_team_score %>
+              </td>
+              <td>
+                <img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(game.home_team).short_name != "JAC" ? Team.find(game.home_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
+                <br>
+                <%= Team.find(game.home_team).name %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
