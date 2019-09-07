@@ -5,11 +5,14 @@ class PoolsController < ApplicationController
   # GET /pools.json
   def index
     @pools = Pool.all
+    @users = User.all
   end
 
   # GET /pools/1
   # GET /pools/1.json
   def show
+    @forecasts = @pool.forecasts
+    @teams = Team.all
   end
 
   # GET /pools/new

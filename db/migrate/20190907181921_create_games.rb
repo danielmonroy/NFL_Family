@@ -8,7 +8,7 @@ class CreateGames < ActiveRecord::Migration[5.2]
       t.integer :away_team_score
       t.integer :week
       t.integer :season
-      t.boolean :editable
+      t.boolean :editable, default: true
 
       t.timestamps
     end
