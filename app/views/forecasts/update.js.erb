@@ -1,0 +1,7 @@
+console.log("Editando Pronóstico");
+//alert("Hello");
+$('#forecast-<%= @forecast.id %>').html('<%= j render "show", forecast: @forecast %>');
+
+/*$('.remote-update').bind('ajax:success', function() {
+});
+*/

@@ -62,15 +62,15 @@
         .navbar.horizontal-layout .nav-top .navbar-brand-wrapper .navbar-brand:active, .navbar.horizontal-layout .nav-top .navbar-brand-wrapper .navbar-brand:focus, .navbar.horizontal-layout .nav-top .navbar-brand-wrapper .navbar-brand:hover {
           color: #424546; }
         .navbar.horizontal-layout .nav-top .navbar-brand-wrapper .navbar-brand img {
-          max-width: 100%;
+          /* max-width: 100%; */
           height: 40px;
           margin: auto;
           vertical-align: middle; }
       .navbar.horizontal-layout .nav-top .navbar-brand-wrapper .brand-logo-mini {
         display: none; }
         .navbar.horizontal-layout .nav-top .navbar-brand-wrapper .brand-logo-mini img {
-          width: auto;
-          max-width: 100%;
+          /* width: auto;
+          max-width: 100%; */
           height: 35px;
           margin-left: 0; }
       @media (max-width: 576px) {

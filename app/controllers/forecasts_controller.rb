@@ -1,4 +1,5 @@
 class ForecastsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_forecast, only: [:show, :edit, :update, :destroy]
 
   # GET /forecasts
@@ -40,13 +41,23 @@ class ForecastsController < ApplicationController
   # PATCH/PUT /forecasts/1
   # PATCH/PUT /forecasts/1.json
   def update
-    respond_to do |format|
-      if @forecast.update(forecast_params)
-        format.html { redirect_to @forecast, notice: 'Forecast was successfully updated.' }
-        format.json { render :show, status: :ok, location: @forecast }
+    if @forecast.pool.user == current_user
+      @teams = Team.all
+      if @forecast.game.can_edit?
+        respond_to do |format|
+          if @forecast.update(selection: params[:selection])
+            format.html { redirect_to @forecast.pool, notice: 'Forecast was successfully updated.' }
+            format.json { render :show, status: :ok, location: @forecast }
+            format.js
+          else
+            format.html { render :edit }
+            format.json { render json: @forecast.errors, status: :unprocessable_entity }
+          end
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @forecast.errors, status: :unprocessable_entity }
+        respond_to do |format|
+          format.js
+        end
       end
     end
   end

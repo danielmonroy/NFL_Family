@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :demo
   resources :teams
   resources :games
+  resources :contenders
 
-  root "demo#index"
+  root "pools#index"
 end
