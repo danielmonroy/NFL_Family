@@ -5,84 +5,86 @@
         <h3 class="pb-3 pt-2 text-center"><b><%= @pool.user.name %></b> <br><span style="font-size:1.2rem;">Semana <%= @pool.week %> - Temporada <%= @pool.season %></span></h3>
         <div class="row">
           <div class="col-md-12">
-            <table class="table text-center table-condensed">
-              <thead>
-                <tr class="text-center">
-                  <th class="text-center">Visitante</th>
-                  <th class="text-center">Empate</th>
-                  <th class="text-center">Local</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @forecasts.each do |forecast| %>
-                <% if forecast.game.editable %>
-                <tr id="forecast-<%= forecast.id %>">
-                  <% if forecast.selection == 'away' %>
-                  <td>
-                    <img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.away_team).short_name != "JAC" ? Team.find(forecast.game.away_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
-                    <br><%= button_to @teams.find(forecast.game.away_team).name, forecast, method: :put, params: {selection: 'away'}, class: "remote-update btn btn-sm btn-primary" , remote: :true , style:"white-space:normal"%></td>
-                  <td><%= button_to "Empate", forecast, method: :put, params: {selection: 'draw'}, class: "remote-update btn btn-sm btn-default" , remote: :true , style:"white-space:normal"%></td>
-                  <td><img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.home_team).short_name != "JAC" ? Team.find(forecast.game.home_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
-                  <br><%= button_to @teams.find(forecast.game.home_team).name, forecast, method: :put, params: {selection: 'home'}, class: "remote-update btn btn-sm btn-default" , remote: :true , style:"white-space:normal"%></td>
-                  <% elsif forecast.selection == 'draw' %>
-                  <td>
-                    <img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.away_team).short_name != "JAC" ? Team.find(forecast.game.away_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
-                    <br><%= button_to @teams.find(forecast.game.away_team).name, forecast, method: :put, params: {selection: 'away'}, class: "remote-update btn btn-sm btn-default" , remote: :true , style:"white-space:normal"%></td>
-                  <td><%= button_to "Empate", forecast, method: :put, params: {selection: 'draw'}, class: "remote-update btn btn-sm btn-primary" , remote: :true , style:"white-space:normal"%></td>
-                  <td><img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.home_team).short_name != "JAC" ? Team.find(forecast.game.home_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
-                  <br><%= button_to @teams.find(forecast.game.home_team).name, forecast, method: :put, params: {selection: 'home'}, class: "remote-update btn btn-sm btn-default" , remote: :true , style:"white-space:normal"%></td>
-                  <% elsif forecast.selection == 'home' %>
-                  <td>
-                    <img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.away_team).short_name != "JAC" ? Team.find(forecast.game.away_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
-                    <br><%= button_to @teams.find(forecast.game.away_team).name, forecast, method: :put, params: {selection: 'away'}, class: "remote-update btn btn-sm btn-default" , remote: :true , style:"white-space:normal"%></td>
-                  <td><%= button_to "Empate", forecast, method: :put, params: {selection: 'draw'}, class: "remote-update btn btn-sm btn-default" , remote: :true , style:"white-space:normal"%></td>
-                  <td><img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.home_team).short_name != "JAC" ? Team.find(forecast.game.home_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
-                  <br><%= button_to @teams.find(forecast.game.home_team).name, forecast, method: :put, params: {selection: 'home'}, class: "remote-update btn btn-sm btn-primary" , remote: :true , style:"white-space:normal"%></td>
+            <div class="table-responsive">
+              <table class="table text-center table-condensed">
+                <thead>
+                  <tr class="text-center">
+                    <th class="text-center">Visitante</th>
+                    <th class="text-center">Empate</th>
+                    <th class="text-center">Local</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @forecasts.each do |forecast| %>
+                  <% if forecast.game.editable %>
+                  <tr id="forecast-<%= forecast.id %>">
+                    <% if forecast.selection == 'away' %>
+                    <td>
+                      <img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.away_team).short_name != "JAC" ? Team.find(forecast.game.away_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
+                      <br><%= button_to @teams.find(forecast.game.away_team).name, forecast, method: :put, params: {selection: 'away'}, class: "remote-update btn btn-sm btn-primary" , remote: :true , style:"white-space:normal"%></td>
+                    <td><%= button_to "Empate", forecast, method: :put, params: {selection: 'draw'}, class: "remote-update btn btn-sm btn-default" , remote: :true , style:"white-space:normal"%></td>
+                    <td><img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.home_team).short_name != "JAC" ? Team.find(forecast.game.home_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
+                    <br><%= button_to @teams.find(forecast.game.home_team).name, forecast, method: :put, params: {selection: 'home'}, class: "remote-update btn btn-sm btn-default" , remote: :true , style:"white-space:normal"%></td>
+                    <% elsif forecast.selection == 'draw' %>
+                    <td>
+                      <img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.away_team).short_name != "JAC" ? Team.find(forecast.game.away_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
+                      <br><%= button_to @teams.find(forecast.game.away_team).name, forecast, method: :put, params: {selection: 'away'}, class: "remote-update btn btn-sm btn-default" , remote: :true , style:"white-space:normal"%></td>
+                    <td><%= button_to "Empate", forecast, method: :put, params: {selection: 'draw'}, class: "remote-update btn btn-sm btn-primary" , remote: :true , style:"white-space:normal"%></td>
+                    <td><img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.home_team).short_name != "JAC" ? Team.find(forecast.game.home_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
+                    <br><%= button_to @teams.find(forecast.game.home_team).name, forecast, method: :put, params: {selection: 'home'}, class: "remote-update btn btn-sm btn-default" , remote: :true , style:"white-space:normal"%></td>
+                    <% elsif forecast.selection == 'home' %>
+                    <td>
+                      <img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.away_team).short_name != "JAC" ? Team.find(forecast.game.away_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
+                      <br><%= button_to @teams.find(forecast.game.away_team).name, forecast, method: :put, params: {selection: 'away'}, class: "remote-update btn btn-sm btn-default" , remote: :true , style:"white-space:normal"%></td>
+                    <td><%= button_to "Empate", forecast, method: :put, params: {selection: 'draw'}, class: "remote-update btn btn-sm btn-default" , remote: :true , style:"white-space:normal"%></td>
+                    <td><img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.home_team).short_name != "JAC" ? Team.find(forecast.game.home_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
+                    <br><%= button_to @teams.find(forecast.game.home_team).name, forecast, method: :put, params: {selection: 'home'}, class: "remote-update btn btn-sm btn-primary" , remote: :true , style:"white-space:normal"%></td>
+                    <% else %>
+                    <td>
+                      <img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.away_team).short_name != "JAC" ? Team.find(forecast.game.away_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
+                      <br><%= button_to @teams.find(forecast.game.away_team).name, forecast, method: :put, params: {selection: 'away'}, class: "remote-update btn btn-sm btn-default" , remote: :true , style:"white-space:normal"%></td>
+                    <td><%= button_to "Empate", forecast, method: :put, params: {selection: 'draw'}, class: "remote-update btn btn-sm btn-default" , remote: :true , style:"white-space:normal"%></td>
+                    <td><img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.home_team).short_name != "JAC" ? Team.find(forecast.game.home_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
+                    <br><%= button_to @teams.find(forecast.game.home_team).name, forecast, method: :put, params: {selection: 'home'}, class: "remote-update btn btn-sm btn-default" , remote: :true , style:"white-space:normal"%></td>
+                    <% end %>
+                  </tr>
                   <% else %>
-                  <td>
-                    <img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.away_team).short_name != "JAC" ? Team.find(forecast.game.away_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
-                    <br><%= button_to @teams.find(forecast.game.away_team).name, forecast, method: :put, params: {selection: 'away'}, class: "remote-update btn btn-sm btn-default" , remote: :true , style:"white-space:normal"%></td>
-                  <td><%= button_to "Empate", forecast, method: :put, params: {selection: 'draw'}, class: "remote-update btn btn-sm btn-default" , remote: :true , style:"white-space:normal"%></td>
-                  <td><img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.home_team).short_name != "JAC" ? Team.find(forecast.game.home_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
-                  <br><%= button_to @teams.find(forecast.game.home_team).name, forecast, method: :put, params: {selection: 'home'}, class: "remote-update btn btn-sm btn-default" , remote: :true , style:"white-space:normal"%></td>
+                  <tr id="forecast-<%= forecast.id %>">
+                    <% if forecast.selection == 'away' %>
+                    <td>
+                      <img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.away_team).short_name != "JAC" ? Team.find(forecast.game.away_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
+                      <br><%= button_to @teams.find(forecast.game.away_team).name, forecast, method: :put, params: {selection: 'away'}, class: "remote-update btn btn-sm btn-primary disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
+                    <td><%= button_to "Empate", forecast, method: :put, params: {selection: 'draw'}, class: "remote-update btn btn-sm btn-default disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
+                    <td><img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.home_team).short_name != "JAC" ? Team.find(forecast.game.home_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
+                    <br><%= button_to @teams.find(forecast.game.home_team).name, forecast, method: :put, params: {selection: 'home'}, class: "remote-update btn btn-sm btn-default disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
+                    <% elsif forecast.selection == 'draw' %>
+                    <td>
+                      <img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.away_team).short_name != "JAC" ? Team.find(forecast.game.away_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
+                      <br><%= button_to @teams.find(forecast.game.away_team).name, forecast, method: :put, params: {selection: 'away'}, class: "remote-update btn btn-sm btn-default disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
+                    <td><%= button_to "Empate", forecast, method: :put, params: {selection: 'draw'}, class: "remote-update btn btn-sm btn-primary disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
+                    <td><img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.home_team).short_name != "JAC" ? Team.find(forecast.game.home_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
+                    <br><%= button_to @teams.find(forecast.game.home_team).name, forecast, method: :put, params: {selection: 'home'}, class: "remote-update btn btn-sm btn-default disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
+                    <% elsif forecast.selection == 'home' %>
+                    <td>
+                      <img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.away_team).short_name != "JAC" ? Team.find(forecast.game.away_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
+                      <br><%= button_to @teams.find(forecast.game.away_team).name, forecast, method: :put, params: {selection: 'away'}, class: "remote-update btn btn-sm btn-default disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
+                    <td><%= button_to "Empate", forecast, method: :put, params: {selection: 'draw'}, class: "remote-update btn btn-sm btn-default disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
+                    <td><img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.home_team).short_name != "JAC" ? Team.find(forecast.game.home_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
+                    <br><%= button_to @teams.find(forecast.game.home_team).name, forecast, method: :put, params: {selection: 'home'}, class: "remote-update btn btn-sm btn-primary disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
+                    <% else %>
+                    <td>
+                      <img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.away_team).short_name != "JAC" ? Team.find(forecast.game.away_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
+                      <br><%= button_to @teams.find(forecast.game.away_team).name, forecast, method: :put, params: {selection: 'away'}, class: "remote-update btn btn-sm btn-default disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
+                    <td><%= button_to "Empate", forecast, method: :put, params: {selection: 'draw'}, class: "remote-update btn btn-sm btn-default disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
+                    <td><img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.home_team).short_name != "JAC" ? Team.find(forecast.game.home_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
+                    <br><%= button_to @teams.find(forecast.game.home_team).name, forecast, method: :put, params: {selection: 'home'}, class: "remote-update btn btn-sm btn-default disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
+                    <% end %>
+                  </tr>
                   <% end %>
-                </tr>
-                <% else %>
-                <tr id="forecast-<%= forecast.id %>">
-                  <% if forecast.selection == 'away' %>
-                  <td>
-                    <img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.away_team).short_name != "JAC" ? Team.find(forecast.game.away_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
-                    <br><%= button_to @teams.find(forecast.game.away_team).name, forecast, method: :put, params: {selection: 'away'}, class: "remote-update btn btn-sm btn-primary disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
-                  <td><%= button_to "Empate", forecast, method: :put, params: {selection: 'draw'}, class: "remote-update btn btn-sm btn-default disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
-                  <td><img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.home_team).short_name != "JAC" ? Team.find(forecast.game.home_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
-                  <br><%= button_to @teams.find(forecast.game.home_team).name, forecast, method: :put, params: {selection: 'home'}, class: "remote-update btn btn-sm btn-default disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
-                  <% elsif forecast.selection == 'draw' %>
-                  <td>
-                    <img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.away_team).short_name != "JAC" ? Team.find(forecast.game.away_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
-                    <br><%= button_to @teams.find(forecast.game.away_team).name, forecast, method: :put, params: {selection: 'away'}, class: "remote-update btn btn-sm btn-default disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
-                  <td><%= button_to "Empate", forecast, method: :put, params: {selection: 'draw'}, class: "remote-update btn btn-sm btn-primary disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
-                  <td><img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.home_team).short_name != "JAC" ? Team.find(forecast.game.home_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
-                  <br><%= button_to @teams.find(forecast.game.home_team).name, forecast, method: :put, params: {selection: 'home'}, class: "remote-update btn btn-sm btn-default disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
-                  <% elsif forecast.selection == 'home' %>
-                  <td>
-                    <img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.away_team).short_name != "JAC" ? Team.find(forecast.game.away_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
-                    <br><%= button_to @teams.find(forecast.game.away_team).name, forecast, method: :put, params: {selection: 'away'}, class: "remote-update btn btn-sm btn-default disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
-                  <td><%= button_to "Empate", forecast, method: :put, params: {selection: 'draw'}, class: "remote-update btn btn-sm btn-default disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
-                  <td><img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.home_team).short_name != "JAC" ? Team.find(forecast.game.home_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
-                  <br><%= button_to @teams.find(forecast.game.home_team).name, forecast, method: :put, params: {selection: 'home'}, class: "remote-update btn btn-sm btn-primary disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
-                  <% else %>
-                  <td>
-                    <img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.away_team).short_name != "JAC" ? Team.find(forecast.game.away_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
-                    <br><%= button_to @teams.find(forecast.game.away_team).name, forecast, method: :put, params: {selection: 'away'}, class: "remote-update btn btn-sm btn-default disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
-                  <td><%= button_to "Empate", forecast, method: :put, params: {selection: 'draw'}, class: "remote-update btn btn-sm btn-default disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
-                  <td><img src="https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/<%= Team.find(forecast.game.home_team).short_name != "JAC" ? Team.find(forecast.game.home_team).short_name : "JAX" %>.svg" class="img-fluid mx-auto d-block" style="max-height:45px;" width="45">
-                  <br><%= button_to @teams.find(forecast.game.home_team).name, forecast, method: :put, params: {selection: 'home'}, class: "remote-update btn btn-sm btn-default disabled" , remote: :true, disabled:true , style:"white-space:normal"%></td>
                   <% end %>
-                </tr>
-                <% end %>
-                <% end %>
-              </tbody>
-            </table>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
