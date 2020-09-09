@@ -117,9 +117,9 @@ teams = Team.create([
                   city: "New Orleans"
               },
               {
-                  short_name: "OAK",
-                  name: "Oakland Raiders",
-                  city: "Oakland"
+                  short_name: "LV",
+                  name: "Las Vegas Raiders",
+                  city: "Las Vegas"
               },
               {
                   short_name: "PHI",

@@ -1,7 +1,7 @@
 task :count_week_points, [:week, :season] => :environment do |task, args|
   week = args[:week].to_i
   season = args[:season].to_i
-  data = JSON.load(open("http://www.nfl.com/liveupdate/scores/scores.json"))
+  data = JSON.load(open("http://static.nfl.com/liveupdate/scores/scores.json"))
   winners_hash = who_win(data)
   pools = Pool.where(week: week, season: season)
   pools.each do |pool|

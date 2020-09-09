@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2019_09_07_182150) do
     t.integer "away_team_score"
     t.integer "week"
     t.integer "season"
-    t.boolean "editable"
+    t.boolean "editable", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
